@@ -60,21 +60,64 @@
   <div class="row mb-5">
     <div class="col-sm-4">
       Red
-      <input class="form-control" type="number" min="0" max="255" value="255">
+      <input class="form-control" id="red" type="number" min="0" max="255" value="255">
     </div>
     <div class="col-sm-4">
       Blue
-      <input class="form-control" type="number" min="0" max="255" value="255">
+      <input class="form-control" id="blue" type="number" min="0" max="255" value="255">
     </div>
     <div class="col-sm-4">
       Green
-      <input class="form-control" type="number" min="0" max="255" value="255">
+      <input class="form-control" id="green" type="number" min="0" max="255" value="255">
     </div>
   </div>
 </div>
-<script src="https://unpkg.com/jquery"></script>
-<script>
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+  crossorigin="anonymous"></script><script>
   // Add your code here!
+  $( function () {
+    console.log("Let’s get ready to party with jQuery!");
+    
+    // 2. center images
+    $("article > img").addClass("image-center");
+
+    // 3. remove last p of article
+    $("article > p:last-child").remove();
+
+    // 4. Sets font size of title to be random size from 0 to 100
+    let randomSize = 1 + Math.floor(Math.random() * 100);
+    $("#title").css("font-size", `${randomSize}px`);
+
+    // 5. Add item to list
+    $("aside > ol").append("<li>HEHEHEHE</li>");
+
+    // 6. Empty the aside and put paragarph in it apologizing for existence
+    $("aside")
+      .empty()
+      .append("<p>I'm am sorry that lists are stupid...<p>");
+
+    // 7 Background color of body should change to match values of 3 inputs at bottom
+    let red = 255;
+    let blue = 255;
+    let green = 255;
+    $(".mb-5").on("change", ".form-control", function (evt) {
+      if (evt.target.id === "red") {
+        red = evt.target.value;
+      } else if (evt.target.id === "blue") {
+        blue = evt.target.value;
+      } else {
+        green = evt.target.value;
+      }
+
+      $("body").css("background-color", `rgb(${red}, ${green}, ${blue})`);
+    });
+
+    // 8. Event listener removes image from DOM when you click it 
+    $("img").on("click", function(evt) {
+      evt.target.remove();
+    });
+    
+  });
 </script>
 </body>
 
